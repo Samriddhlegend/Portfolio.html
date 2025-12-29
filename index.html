@@ -19,15 +19,15 @@ html{scroll-behavior:smooth;}
 
 body{
   font-family:system-ui,sans-serif;
-  background:linear-gradient(180deg,#020617,#020617);
+  background:var(--bg);
   color:var(--text);
 }
 
-/* ===== NAVBAR ===== */
+/* ===== NAVBAR (HORIZONTAL EVERYWHERE) ===== */
 header{
   position: sticky;
   top: 0;
-  background: rgba(2,6,23,.9);
+  background: rgba(2,6,23,.95);
   backdrop-filter: blur(8px);
   z-index: 10;
 }
@@ -41,46 +41,27 @@ header{
   padding:1rem;
 }
 
+.nav h1{
+  font-size:1.3rem;
+}
+
 .nav ul{
   display:flex;
   gap:1rem;
   list-style:none;
+  flex-wrap:wrap;
 }
 
 .nav a{
   color:var(--accent);
   text-decoration:none;
-  transition:0.3s;
+  font-weight:500;
+  transition:.3s;
 }
 
 .nav a:hover{
   color:#fff;
   text-decoration:underline;
-}
-
-/* 📱 Mobile Vertical Navbar */
-@media (max-width:768px){
-  header{
-    position: relative;
-  }
-
-  .nav{
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav ul{
-    flex-direction: column;
-    width:100%;
-    text-align:center;
-    margin-top:1rem;
-    gap:0.6rem;
-  }
-
-  .nav ul li a{
-    display:block;
-    padding:0.6rem 0;
-  }
 }
 
 /* ===== SECTIONS ===== */
@@ -154,7 +135,7 @@ section{
 
 .btn:hover{transform:scale(1.05)}
 
-/* ===== CARDS ===== */
+/* ===== GRID & CARDS ===== */
 .grid{
   display:grid;
   gap:1.5rem;
@@ -210,7 +191,7 @@ input,textarea{
   color:var(--text);
 }
 
-/* ===== ANIMATION ===== */
+/* ===== SCROLL ANIMATION ===== */
 .fade-up{
   opacity:0;
   transform:translateY(30px);
@@ -295,7 +276,8 @@ footer{
 <section id="skills" class="fade-up">
   <h2>Skills</h2>
   <div class="card skills">
-    <span>HTML</span><span>CSS</span><span>Python</span><span>Git</span><span>Responsive Design</span>
+    <span>HTML</span><span>CSS</span><span>Python</span>
+    <span>Git</span><span>Responsive Design</span>
   </div>
 </section>
 
@@ -311,11 +293,12 @@ footer{
 <section id="contact" class="fade-up">
   <h2>Contact Me</h2>
   <div class="contact-info">
-    📞 Phone: <a href="tel:7415613055">7415613055</a><br>
-    📧 Email: <a href="mailto:Samriddhkamde1235@gmail.com">Samriddhkamde1235@gmail.com</a><br>
-    🐙 GitHub: <a href="https://github.com/Samriddhkamde" target="_blank">github.com/Samriddhkamde</a><br>
-    🔗 LinkedIn: <a href="https://www.linkedin.com/in/samriddh-kamde-1b8169370" target="_blank">View Profile</a>
+   📞 Phone: <a href="tel:7415613055">7415613055</a><br>
+   📧 Email: <a href="mailto:Samriddhkamde1235@gmail.com">Samriddhkamde1235@gmail.com</a><br>
+   🐙 GitHub: <a href="https://github.com/Samriddhkamde" target="_blank">github.com/Samriddhkamde</a><br>
+   🔗 LinkedIn: <a href="https://www.linkedin.com/in/samriddh-kamde-1b8169370" target="_blank">View Profile</a>
 </div>
+
   <form onsubmit="handleSubmit(event)">
     <input type="text" placeholder="Your Name" required>
     <input type="email" placeholder="Your Email" required>
@@ -326,16 +309,21 @@ footer{
 
 <footer>© 2025 Samriddh Kamde · All rights reserved</footer>
 
-<a href="https://wa.me/917415613055" class="float-btn" target="_blank">WhatsApp</a>
-<a href="https://mail.google.com/mail/?view=cm&fs=1&to=Samriddhkamde1235@gmail.com" class="email-btn" target="_blank">Email</a>
+<a href="https://wa.me/917415613055" target="_blank" class="float-btn">WhatsApp</a>
+<a href="https://mail.google.com/mail/?view=cm&fs=1&to=Samriddhkamde1235@gmail.com" target="_blank" class="email-btn">Email</a>
 
 <script>
 const observer = new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting) e.target.classList.add('show');
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
   });
 });
-document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
+document.querySelectorAll(".fade-up").forEach(el=>{
+  observer.observe(el);
+});
 
 function handleSubmit(e){
   e.preventDefault();
