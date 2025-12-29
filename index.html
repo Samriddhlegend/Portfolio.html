@@ -16,6 +16,7 @@
 
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
+
 body{
   font-family:system-ui,sans-serif;
   background:linear-gradient(180deg,#020617,#020617);
@@ -34,24 +35,27 @@ header{
   margin:auto;
   display:flex;
   justify-content:space-between;
-  align-items:center;
   padding:1rem;
-  flex-wrap:wrap;
 }
 .nav ul{
   display:flex;
   gap:1rem;
   list-style:none;
-  flex-wrap:wrap;
-  justify-content:center;
 }
-.nav a{color:var(--accent);text-decoration:none}
+.nav a{
+  color:var(--accent);
+  text-decoration:none;
+  transition:.3s;
+}
+.nav a:hover{
+  color:#ffffff;
+  text-decoration:underline;
+}
 
 section{
   max-width:1100px;
   margin:auto;
   padding:3rem 1rem;
-  scroll-margin-top:90px;
 }
 
 .hero{
@@ -59,9 +63,10 @@ section{
   padding-top:4rem;
 }
 .hero h2{
-  font-size:clamp(1.6rem,5vw,2.8rem);
+  font-size:2.5rem;
   margin-bottom:1rem;
 }
+
 .profile-pic{
   width:150px;
   height:150px;
@@ -77,6 +82,7 @@ section{
   50%{transform:translateY(-10px)}
   100%{transform:translateY(0)}
 }
+
 .typing{
   border-right:3px solid var(--accent);
   white-space:nowrap;
@@ -90,11 +96,13 @@ section{
 @keyframes blink{
   50%{border-color:transparent}
 }
+
 .hero p{
   color:var(--muted);
-  max-width:90%;
+  max-width:600px;
   margin:auto;
 }
+
 .btn{
   display:inline-block;
   margin-top:1.5rem;
@@ -167,20 +175,20 @@ input,textarea{
 
 .float-btn,.email-btn{
   position:fixed;
-  right:15px;
-  padding:.6rem .9rem;
+  right:20px;
+  padding:.7rem 1rem;
   border-radius:50px;
   font-weight:600;
   box-shadow:0 10px 25px rgba(0,0,0,.4);
   z-index:99;
 }
 .float-btn{
-  bottom:15px;
+  bottom:20px;
   background:#25D366;
   color:white;
 }
 .email-btn{
-  bottom:65px;
+  bottom:80px;
   background:var(--accent);
   color:#020617;
 }
@@ -192,11 +200,23 @@ input,textarea{
 @media(min-width:1024px){
   .grid{grid-template-columns:repeat(3,1fr);}
 }
+
+/* MOBILE NAVBAR COLUMN */
 @media(max-width:768px){
-  .nav{flex-direction:column;gap:0.5rem;}
-  .nav ul{flex-direction:column;gap:0.5rem;}
-  #about p{font-size:clamp(14px,4vw,18px);}
-  .hero p{font-size:clamp(14px,4vw,18px);}
+  .nav{
+    flex-direction:column;
+    align-items:center;
+  }
+  .nav ul{
+    flex-direction:column;
+    gap:0.5rem;
+    width:100%;
+    text-align:center;
+  }
+  .nav ul li a{
+    display:block;
+    padding:0.5rem 0;
+  }
 }
 
 footer{
@@ -231,9 +251,9 @@ footer{
 
 <section id="about" class="fade-up">
 <h2>About Me</h2>
-<p style="margin-top:1rem;color:var(--muted);"><b>
-I’m a motivated and fast-learning tech enthusiast with a strong interest in web development and modern technologies. I enjoy building projects, learning new tools quickly, and improving my skills through hands-on practice. I’m always curious about how technology can solve real-world problems.
-</b></p>
+<p style="margin-top:1rem;color:var(--muted); font-size:20px;" ><b>
+I’m a motivated and fast-learning tech enthusiast with a strong interest in web development and modern technologies. I enjoy building projects, learning new tools quickly, and improving my skills through hands-on practice. I’m always curious about how technology can solve real-world problems
+</p></b>
 </section>
 
 <section id="skills" class="fade-up">
@@ -249,7 +269,7 @@ I’m a motivated and fast-learning tech enthusiast with a strong interest in we
 <div class="grid">
 <div class="card"><h3>Portfolio Website</h3><p>Personal responsive portfolio.</p></div>
 <div class="card"><h3>Machine Learning Demo</h3><p>Python ML project.</p></div>
-<div class="card"><h3>Calculator</h3><p>Interactive UI.</p></div>
+<div class="card"><h3>Calculator</h3><p>Interactive UI .</p></div>
 </div>
 </section>
 
@@ -257,10 +277,10 @@ I’m a motivated and fast-learning tech enthusiast with a strong interest in we
 <h2>Contact Me</h2>
 
 <div class="contact-info">
-📞 <a href="tel:7415613055">7415613055</a><br>
-📧 <a href="mailto:Samriddhkamde1235@gmail.com">Samriddhkamde1235@gmail.com</a><br>
-🐙 <a href="https://github.com/Samriddhkamde" target="_blank">github.com/Samriddhkamde</a><br>
-🔗 <a href="https://www.linkedin.com/in/samriddh-kamde-1b8169370" target="_blank">View Profile</a>
+📞 Phone: <a href="tel:7415613055">7415613055</a><br>
+📧 Email: <a href="mailto:Samriddhkamde1235@gmail.com">Samriddhkamde1235@gmail.com</a><br>
+🐙 GitHub: <a href="https://github.com/Samriddhkamde" target="_blank">github.com/Samriddhkamde</a><br>
+🔗 LinkedIn: <a href="https://www.linkedin.com/in/samriddh-kamde-1b8169370" target="_blank">View Profile</a>
 </div>
 
 <form onsubmit="handleSubmit(event)">
@@ -274,13 +294,20 @@ I’m a motivated and fast-learning tech enthusiast with a strong interest in we
 <footer>© 2025 Samriddh Kamde · All rights reserved</footer>
 
 <a href="https://wa.me/917415613055" target="_blank" class="float-btn">WhatsApp</a>
-<a href="https://mail.google.com/mail/?view=cm&fs=1&to=Samriddhkamde1235@gmail.com" target="_blank" class="email-btn">Email</a>
+<a href="https://mail.google.com/mail/?view=cm&fs=1&to=Samriddhkamde1235@gmail.com"
+   target="_blank"
+   class="email-btn">
+   Email
+</a>
 
 <script>
 const observer=new IntersectionObserver(entries=>{
-entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
+entries.forEach(e=>{
+if(e.isIntersecting)e.target.classList.add('show');
+});
 });
 document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
 function handleSubmit(e){
 e.preventDefault();
 alert("Thank you! Your message has been sent.");
